@@ -23,6 +23,7 @@ public:
     //void initSym(int row, int col);
 
     Sym operator+(Sym &);
+    Sym operator-(Sym &);
     void operator=(Sym &);
 
     void print();
