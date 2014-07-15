@@ -103,6 +103,28 @@ Sym Sym::operator+(Sym &symbolic)
    return ret;
 }
 
+Sym Sym::operator-(Sym &symbolic)
+{
+    Sym ret;
+    int max = this->rowSym;
+    
+    if(symbolic.rowSym > this->rowSym)
+       max = symbolic.rowSym
+       
+    ret.initSaym(this->rowSym+symbolic.rowSym,max);
+    
+    for(int i = 0; i < ret.rowSym; i++)
+       for(int j = 0; j < ret.colSym; j++)
+       {
+           if(i == this->rowSym)
+             ret.var[i-this->rowSym-1][j] = symbolic.var[i-this->rowSym][j];
+           else
+             ret.var[i][j] = this->var[i][j];
+       }
+    
+    return ret;   
+}
+
 void Sym::operator=(Sym &poly)
 {
     this->initSym(poly.rowSym, poly.colSym);
